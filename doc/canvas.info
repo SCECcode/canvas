@@ -1,0 +1,42 @@
+
+The NetCDF file is flat, but the model is iterated with topography.
+ I need to check with my collaborators, but I think I should be able to 
+generate a version with topography as well if that would be useful!
+
+The model is on a regularized grid in geocentric coordinates.
+
+The model is 11.5˚ in latitude (31.5˚N to 42˚N), 11˚ in longitude (-125˚E to -114˚E),
+and 100 km deep. The NetCDF file has a resolution of 0.05˚x0.05˚x1 km; this is 
+arbitrarily chosen, so I can manipulate the resolution as needed. If a coarser/finer
+resolution would work better, let me know and I can generate a new file.  
+
+The model provides Vpv, Vph, Vsv, Vsh, and density.
+
+Though we include the independently inverted density in the model file, density scaled using 
+Gardner’s Law is preferred since our model has minimal sensitivity to density. Vp values 
+from the original model can be used without scaling them from Vs.
+
+The NetCDF file can be read in using xarray, which would allow users to pull all values from #4
+for a given lat/lon/depth. I sent Mei a rudimentary python notebook earlier I use to quickly 
+visualise data; I’m happy to make a more in-depth version if that would be of interest.
+
+No, a GTL is not considered.
+
+The minimum Vs is around 2000 m/s.
+
+Yes! If there’s a preferred model format not on the Zenodo, though, please let me know and 
+I’m happy to reformat the data.
+Since the NetCDF file is a regularized grid, it seems like trilinear interpolation 
+should be okay from my brief googling. I don’t know much about interpolation methods, 
+though, so I’ll do some more digging.  The .h5 is an unstructured mesh that’s specific for
+import into Salvus (the SEM code we use to invert our model).
+Since CANVAS is optimized to fit waveforms, I generally use waveform cross-correlation
+coefficients between model synthetics and observed data to test model integration. I’m 
+open to trying other metrics, though, and can provide synthetic seismograms for testing as well.
+
+Though not on your list, another important detail to note is that Moho topography is fixed
+in the model. We honor Moho topography values from Crust1.0. I’m hoping that we’ll have 
+the opportunity to use a regional Moho model in the future (e.g., Tape et al., 2012),
+but doing so would require running more iterations of the model, which I currently don’t 
+have funding to do.
+

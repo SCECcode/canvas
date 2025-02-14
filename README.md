@@ -6,6 +6,10 @@ California-Nevada Adjoint Simulations (CANVAS) adjoint waveform tomography model
 This package is intended to be installed as part of the UCVM framework,
 version 22.7.0 or higher.
 
+## Note
+
+A right rectangle, no rotation 
+
 ## Contact the authors
 
 If you would like to contact the authors regarding this software,

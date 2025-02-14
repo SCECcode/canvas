@@ -3,12 +3,12 @@
 # Builds the data files in the expected format 
 # from CANVAS_model.txt (stored over at CARC)
 #
-# from >> lon lat depth(m) vp(km/s)
+# from : Lat Lon Depth Vp Vpv Vph Vs Vsv Vsh
 #
-# to >>  /** P-wave velocity in km/s per second */
-#        double vp;
-# depth is in increment of 1000m,
-#
+#   NOTE:  this simplified method only work for dataset
+#          with no 'rotation'.  
+#          ie. right square/rectangle mesh
+## 
 
 import getopt
 import sys
@@ -138,26 +138,31 @@ def main():
 
     f = open(fname)
     f_vp = open(mdir+"/vp.dat", "wb")
+    f_vs = open(mdir+"/vs.dat", "wb")
 
 #    print("size of model, ",dimension_x * dimension_y * dimension_z)
 
     vp_arr = array.array('f', (-1.0,) * (dimension_x * dimension_y * dimension_z))
 
-    nan_cnt = 0
+# from : Lat Lon Depth Vp Vpv Vph Vs Vsv Vsh
+    vp_nan_cnt = 0
+    vs_nan_cnt = 0
     total_cnt =0;
     for line in f:
         arr = line.split()
-        lon_v = float(arr[0])
-        lat_v = float(arr[1])
-        depth_v = float(arr[2])/500
-        vp = -1.0;
-        tmp = arr[3]
+        lat_v = float(arr[0])
+        lon_v = float(arr[1])
+        depth_v = float(arr[2])
+        vp = float(arr[3])
+        vs = float(arr[6])
         total_cnt = total_cnt + 1
-        if( tmp != "NaN" ):
-          vp = float(arr[3])
-          vp = vp * 1000.0;
-        else:
-          nan_cnt = nan_cnt + 1
+
+        if(vp == "NaN") :
+            vp_nan_cnt=vp_nan_cnt+1
+            vp=-9999
+        if(vs == "NaN") :
+            vs_nan_cnt=vs_nan_cnt+1
+            vs=-9999
 
         y_pos = int(round((lat_v - lat_origin) / delta_lat))
         x_pos = int(round((lon_v - lon_origin) / delta_lon))
@@ -166,6 +171,7 @@ def main():
         loc =z_pos * (dimension_y * dimension_x) + (y_pos * dimension_x) + x_pos
 
         vp_arr[loc] = vp
+        vs_arr[loc] = vs
 
 #        if( tmp != "NaN" ):
 #          print x_pos," ",y_pos," ",z_pos," >> ",lon_v," ",lat_v," ",depth_v," ",vp 
@@ -173,11 +179,13 @@ def main():
 #          print "NAN", x_pos," ",y_pos," ",z_pos," >> ",lon_v," ",lat_v," ",depth_v," ",vp 
 
     vp_arr.tofile(f_vp)
+    vs_arr.tofile(f_vs)
 
     f.close()
     f_vp.close()
+    f_vs.close()
 
-    print("Done! with NaN", nan_cnt, "total", total_cnt)
+    print("Done! with NaN", "vp(", vp_nan_cnt,") vs(", vs_nan_cnt, ") total", total_cnt)
 
 if __name__ == "__main__":
     main()

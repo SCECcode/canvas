@@ -122,12 +122,13 @@ int canvas_query(canvas_point_t *points, canvas_properties_t *data, int numpoint
 
         if(canvas_debug) { fprintf(stderrfp,"X:lon_e %f bottom %f delta %f ==> %d\n",lon_e,canvas_configuration->bottom_left_corner_lon, delta_lon, load_x_coord); }
 
-        load_z_coord = (int)((points[i].depth)/1000);
+        load_z_coord = (int)((points[i].depth)/canvas_configuration->depth_interval);
 
+        if(canvas_debug) { fprintf(stderrfp," %f  --  %f \n", points[i].depth,  canvas_configuration->depth_interval); }
         if(canvas_debug) { fprintf(stderrfp,"coord %d %d %d\n", load_x_coord, load_y_coord, load_z_coord); }
 
         // Are we outside the model's X and Y and Z boundaries?
-        if (points[i].depth > canvas_configuration->depth || load_x_coord > canvas_configuration->nx -1  || load_y_coord > canvas_configuration->ny -1 || load_x_coord < 0 || load_y_coord < 0 || load_z_coord < 0) {
+        if (points[i].depth > canvas_configuration->depth || load_x_coord > canvas_configuration->nx -1  || load_y_coord > canvas_configuration->ny -1 || load_x_coord < 0 || load_y_coord < 0 || load_z_coord < 0 || load_z_coord > canvas_configuration->nz -1 ) {
             data[i].vp = -1;
             data[i].vs = -1;
             data[i].rho = -1;
@@ -139,9 +140,7 @@ int canvas_query(canvas_point_t *points, canvas_properties_t *data, int numpoint
         y_percent = fmod((lat_n - canvas_configuration->bottom_left_corner_lat), delta_lat)/delta_lat;
         z_percent = fmod(points[i].depth, canvas_configuration->depth_interval) / canvas_configuration->depth_interval;
 
-        if(canvas_debug) {
-            fprintf(stderrfp," percent %lf %lf %lf\n", x_percent, y_percent, z_percent);
-        }
+        if(canvas_debug) { fprintf(stderrfp," percent %lf %lf %lf\n", x_percent, y_percent, z_percent); }
 
         if (load_z_coord == 0) {
             // We're below the model boundaries. Bilinearly interpolate the bottom plane and use that value.

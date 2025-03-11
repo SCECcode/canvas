@@ -21,6 +21,7 @@ import sys
 import subprocess
 import struct
 import array
+import math
 
 if sys.version_info.major >= (3) :
   from urllib.request import urlopen
@@ -145,10 +146,22 @@ def main():
         vsv_v = -1 if (vsv == "NaN") else float(vsv) 
         vsh = (arr[1])
         vsh_v = -1 if (vsh == "NaN") else float(vsh) 
+
         vpv = (arr[2])
         vpv_v = -1 if (vpv == "NaN") else float(vpv) 
         vph = (arr[3])
         vph_v = -1 if (vph == "NaN") else float(vph) 
+     
+        if (vsv != "NaN" ) :
+            vs =  math.sqrt(((vsv_v * vsv_v) + (vsh_v * vsh_v))/2)
+        else:
+            vs=-1
+
+        if (vpv != "NaN" ) :
+            vp =  math.sqrt(((vpv_v * vpv_v) + (vph_v * vph_v))/2)
+        else:
+            vp=-1
+
         density = (arr[4])
         density_v = -1 if (density == "NaN") else float(density) 
 
@@ -159,9 +172,11 @@ def main():
 
         loc =z_pos * (dimension_y * dimension_x) + (x_pos * dimension_y) + y_pos
 #        print("location for this..",loc)
-        vs_arr[loc] = vsv_v
-        vp_arr[loc] = vpv_v
+
+        vs_arr[loc] = vs
+        vp_arr[loc] = vp
         density_arr[loc] = density_v
+
 #        if (data_total_cnt > 102) : return True
 
 ##"Dimensions:    (longitude: 220, latitude: 230, depth: 100)\n",

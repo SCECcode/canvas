@@ -8,18 +8,28 @@ AM_CFLAGS = ${CFLAGS}
 AM_FCFLAGS = ${FCFLAGS}
 AM_LDFLAGS = ${LDFLAGS}
 
-install:
+all:
 if WITH_CANVAS_LARGEDATA_DIR
-	$(MKDIR_P) ${prefix}/model
- 	$(LN_S) -f $(CANVAS_LARGEDATA_DIR) ${prefix}/model
 	echo "USING WITH_CANVAS_LARGEDATA_DIR in canvas"
 else
-	mkdir -p ${prefix}/data
-	cp ./config ${prefix}/data
-	cp -R ./canvas ${prefix}/data
-	chmod og+r ${prefix}/data/config
-	chmod -R og+r ${prefix}/data/canvas
-	chmod og+x ${prefix}/data/canvas
+	./make_data_files.py
+endif
+
+install:
+if WITH_CANVAS_LARGEDATA_DIR
+	if [ ! -d "${prefix}/data/canvas" ]; then \
+		$(MKDIR_P) ${prefix}/data; \
+		$(LN_S) -f $(CANVAS_LARGEDATA_DIR) ${prefix}/data/canvas; \
+		echo "USING WITH_CANVAS_LARGEDATA_DIR in canvas"; \
+	fi
+	cp config ${prefix}/data
+else
+	if [ ! -d "${prefix}/data/canvas" ]; then \
+		$(MKDIR_P) ${prefix}/data; \
+		mv canvas ${prefix}/data; \
+		$(LN_S) -f ${prefix}/data/canvas .; \
+	fi
+	cp config ${prefix}/data
 endif
 
 clean:

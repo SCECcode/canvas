@@ -152,13 +152,16 @@ def main():
         vph = (arr[3])
         vph_v = -1 if (vph == "NaN") else float(vph) 
      
+# Voigt-averaged Vs and Vp
+# equations from Panning and Romanowicz, 2006,
+
         if (vsv != "NaN" ) :
-            vs =  math.sqrt(((vsv_v * vsv_v) + (vsh_v * vsh_v))/2)
+            vs =  math.sqrt((2 * (vsv_v * vsv_v) + (vsh_v * vsh_v))/3)
         else:
             vs=-1
 
         if (vpv != "NaN" ) :
-            vp =  math.sqrt(((vpv_v * vpv_v) + (vph_v * vph_v))/2)
+            vp =  math.sqrt(((vpv_v * vpv_v) + 4 * (vph_v * vph_v))/5)
         else:
             vp=-1
 

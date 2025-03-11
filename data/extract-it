@@ -1,0 +1,40 @@
+#CANVAS_xarray_processing.ipynb
+#jupyter nbconvert --to python CANVAS_to_text.ipynb
+
+./CANVAS_to_text.py
+#
+
+##!/usr/bin/env python
+# coding: utf-8
+
+# In[4]:
+import xarray as xr
+import pandas as pd
+
+# In[3]:
+
+canvas = xr.open_dataset("CANVAS.nc")
+pd = canvas.to_dataframe()
+pd.to_csv("canvas.txt", sep="\t", index = False)
+print(pd.iloc[[1000]])
+pd.head(10)
+
+
+
+-----
+
+longitude latitude depth                                                                     
+-125.0    31.5     0.00000               NaN          NaN          NaN          NaN       NaN
+                   1010.10101            NaN          NaN          NaN          NaN       NaN
+                   2020.20202            NaN          NaN          NaN          NaN       NaN
+                   3030.30303            NaN          NaN          NaN          NaN       NaN
+                   4040.40404            NaN          NaN          NaN          NaN       NaN
+...                                      ...          ...          ...          ...       ...
+-114.0    43.0     95959.59596   4280.450093  4090.768017  7336.793353  8161.602112  2.932114
+                   96969.69697   4283.438161  4090.576605  7342.655824  8161.639781  2.932216
+                   97979.79798   4286.458495  4090.559937  7348.604930  8161.572613  2.932311
+                   98989.89899   4289.511094  4090.718012  7354.640671  8161.400606  2.932399
+                   100000.00000  4292.595958  4091.050832  7360.763047  8161.123762  2.932482
+[5060000 rows x 5 columns]
+
+

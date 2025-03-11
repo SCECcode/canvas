@@ -99,6 +99,10 @@ typedef struct canvas_model_t {
 	void *vp;
 	/** Vp status: 0 = not found, 1 = found and not in memory, 2 = found and in memory */
 	int vp_status;
+	void *vs;
+	int vs_status;
+	void *density;
+	int density_status;
 } canvas_model_t;
 
 // Constants
@@ -156,10 +160,6 @@ void print_error(char *err);
 void canvas_read_properties(int x, int y, int z, canvas_properties_t *data);
 /** Attempts to malloc the model size in memory and read it in. */
 int canvas_try_reading_model(canvas_model_t *model);
-/** Calculates density from Vs. */
-double canvas_calculate_density(double vp);
-/** Calculates Vs from Vp. */
-double canvas_calculate_vs(double vp);
 
 // Interpolation Functions
 /** Linearly interpolates two canvas_properties_t structures */

@@ -13,8 +13,17 @@ version = DOI:10.5281/zenodo.8415561
 ## total is 5,060,000 points
 ## Vs (m/s)
 ## Rho (kg/m3)
-nx = 230
-ny = 220
+##     Dimensions:    (longitude: 220, latitude: 230, depth: 100)
+##     Coordinates:\n",
+##     * longitude  (longitude) float64 -125.0 -124.9 -124.9 ... -114.1 -114.1 -114.0
+##     * latitude   (latitude) float64 31.5 31.55 31.6 31.65 ... 42.9 42.95 43.0
+##     * depth      (depth) float64 0.0 1.01e+03 2.02e+03 ... 9.899e+04 1e+05
+# x/lon
+# y/lat
+# z/depth
+
+nx = 220
+ny = 230
 nz = 100
 
 # Corners, in LATLON 
@@ -23,9 +32,9 @@ bottom_right_corner_lat = 31.5
 bottom_left_corner_lon  = -125.0
 bottom_left_corner_lat  = 31.5
 top_right_corner_lon    = -114.0
-top_right_corner_lat    = 42.0
+top_right_corner_lat    = 43.0
 top_left_corner_lon     = -125.0
-top_left_corner_lat     = 42.0
+top_left_corner_lat     = 43.0
 
 # in meters
 depth = 100000

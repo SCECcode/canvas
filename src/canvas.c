@@ -97,8 +97,34 @@ int canvas_init(const char *dir, const char *label) {
  */
 double canvas_calculate_density(double vp) {
      double retVal ;
-     double tmp=vp;
-     retVal = 0.31 * pow(tmp, 0.25);
+     retVal = 0.31 * pow(vp, 0.25) * 1000;
+     return retVal;
+}
+
+
+/**
+ * Calculates the density based off of Vp. Base on Brocher's formulae
+ *
+ * @param vp
+ * @return Density, in g/m^3.
+ * [eqn. 6] r (g/cm3) = 1.6612Vp – 0.4721Vp2 + 0.0671Vp3 – 0.0043Vp4 + 0.000106Vp5.
+ * Equation 6 is the “Nafe-Drake curve” (Ludwig et al., 1970).
+ * start with vp in km
+ */
+double Brocher_calculate_density(double vp) {
+     double retVal ;
+
+     vp = vp * 0.001;
+     double t1 = (vp * 1.6612);
+     double t2 = ((vp * vp ) * 0.4721);
+     double t3 = ((vp * vp * vp) * 0.0671);
+     double t4 = ((vp * vp * vp * vp) * 0.0043);
+     double t5 = ((vp * vp * vp * vp * vp) * 0.000106);
+     retVal = t1 - t2 + t3 - t4 + t5;
+     if (retVal < 1.0) {
+       retVal = 1.0;
+     }
+     retVal = retVal * 1000.0;
      return retVal;
 }
 
@@ -192,6 +218,12 @@ int canvas_query(canvas_point_t *points, canvas_properties_t *data, int numpoint
            }
         }
         data[i].rho = canvas_calculate_density(data[i].vp);
+
+if(canvas_debug) { 
+  fprintf(stderrfp, "canvas density %f \n",data[i].rho);
+  double rho=Brocher_calculate_density(data[i].vp);
+  fprintf(stderrfp, "Brocher density %f \n",rho);
+}
     }
 
     return SUCCESS;

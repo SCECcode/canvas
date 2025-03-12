@@ -12,7 +12,9 @@ all:
 if WITH_CANVAS_LARGEDATA_DIR
 	echo "USING WITH_CANVAS_LARGEDATA_DIR in canvas"
 else
-	./make_data_files.py
+	if [ ! -d "canvas" ]; then \
+		./make_data_files.py; \
+	fi
 endif
 
 install:

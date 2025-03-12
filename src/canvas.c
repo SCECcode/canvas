@@ -89,6 +89,21 @@ int canvas_init(const char *dir, const char *label) {
 }
 
 /**
+ * Calculates the density based off of Vp from Gardner's seismic equation.
+ *
+ * @param vp
+ * @return Density, in g/m^3.
+ * Gardner’s equation (rho = 0.31Vp**0.25)
+ */
+double canvas_calculate_density(double vp) {
+     double retVal ;
+     double tmp=vp;
+     retVal = 0.31 * pow(tmp, 0.25);
+     return retVal;
+}
+
+
+/**
  * Queries CANVAS at the given points and returns the data that it finds.
  *
  * @param points The points at which the queries will be made.
@@ -176,6 +191,7 @@ int canvas_query(canvas_point_t *points, canvas_properties_t *data, int numpoint
               canvas_read_properties(load_x_coord,     load_y_coord,     load_z_coord,     &(data[i]));    // Orgin.
            }
         }
+        data[i].rho = canvas_calculate_density(data[i].vp);
     }
 
     return SUCCESS;
@@ -227,19 +243,8 @@ void canvas_read_properties(int x, int y, int z, canvas_properties_t *data) {
         fread(&(data->vs), sizeof(float), 1, fp);
     }
 
-    if (canvas_velocity_model->density_status == 2) {
-        // Read from memory.
-        ptr = (float *)canvas_velocity_model->density;
-        data->rho = ptr[location];
-    } else if (canvas_velocity_model->density_status == 1) {
-        // Read from file.
-        fp = (FILE *)canvas_velocity_model->density;
-        fseek(fp, location * sizeof(float), SEEK_SET);
-        fread(&(data->rho), sizeof(float), 1, fp);
-    }
-
     if(canvas_debug) {
-      fprintf(stderrfp, "getting %f %f %f\n", data->vs, data->vp, data->rho);
+      fprintf(stderrfp, "getting %f %f\n", data->vs, data->vp);
     }
 
 }
@@ -498,23 +503,6 @@ int canvas_try_reading_model(canvas_model_t *model) {
             all_read_to_memory = 0;
             model->vs = fopen(current_file, "rb");
             model->vs_status = 1;
-        }
-        file_count++;
-    }
-
-    sprintf(current_file, "%s/density.dat", canvas_data_directory);
-    if (access(current_file, R_OK) == 0) {
-        model->density = malloc(base_malloc);
-        if (model->density != NULL) {
-            // Read the model in.
-            fp = fopen(current_file, "rb");
-            fread(model->density, 1, base_malloc, fp);
-            fclose(fp);
-            model->density_status = 2;
-        } else {
-            all_read_to_memory = 0;
-            model->density = fopen(current_file, "rb");
-            model->density_status = 1;
         }
         file_count++;
     }

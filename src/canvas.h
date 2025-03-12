@@ -101,8 +101,6 @@ typedef struct canvas_model_t {
 	int vp_status;
 	void *vs;
 	int vs_status;
-	void *density;
-	int density_status;
 } canvas_model_t;
 
 // Constants

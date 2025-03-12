@@ -122,11 +122,9 @@ def main():
     fp = open("./canvas.txt");
     f_vs = open("./canvas/vs.dat", "wb")
     f_vp = open("./canvas/vp.dat", "wb")
-    f_density = open("./canvas/density.dat", "wb")
 
     vs_arr = array.array('f', (-1.0,) * (dimension_x * dimension_y * dimension_z))
     vp_arr = array.array('f', (-1.0,) * (dimension_x * dimension_y * dimension_z))
-    density_arr = array.array('f', (-1.0,) * (dimension_x * dimension_y * dimension_z))
 
     print ("dimension is", (dimension_x * dimension_y * dimension_z))
 
@@ -165,9 +163,6 @@ def main():
         else:
             vp=-1
 
-        density = (arr[4])
-        density_v = -1 if (density == "NaN") else float(density) 
-
         if (vsv == "NaN" ) :
            data_nan_cnt = data_nan_cnt + 1
 
@@ -178,7 +173,6 @@ def main():
 
         vs_arr[loc] = vs
         vp_arr[loc] = vp
-        density_arr[loc] = density_v
 
 #        if (data_total_cnt > 102) : return True
 
@@ -201,12 +195,10 @@ def main():
 
     vp_arr.tofile(f_vp)
     vs_arr.tofile(f_vs)
-    density_arr.tofile(f_density)
 
     fp.close()
     f_vs.close()
     f_vp.close()
-    f_density.close()
 
     print("Done! with NaN(", data_nan_cnt, ") total(", data_total_cnt,")")
 

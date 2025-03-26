@@ -1,5 +1,10 @@
 # CANVAS
+
 California-Nevada Adjoint Simulations (CANVAS) adjoint waveform tomography model. 
+
+CANVAS describes radially anisotropic P- and S-wave speeds for California and Nevada based on publicly available broadband data. CANVAS was determined by optimizing the fit between observed and synthetic data for moderate-magnitude (Mw 4.5-6.5) earthquakes that occurred within its domain. CANVAS effectively predicts waveform fits down to minimum periods of 12 seconds.
+
+*Gardner’s equation (rho = 0.31Vp**0.25)
 
 ## Installation
 

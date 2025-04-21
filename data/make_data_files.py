@@ -111,8 +111,8 @@ def main():
 
     fname="./"+"canvas.txt"
     url = path + "/" + fname
-#
-#    download_urlfile(url,fname)
+
+    download_urlfile(url,fname)
 
     subprocess.check_call(["mkdir", "-p", mdir])
 

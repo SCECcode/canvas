@@ -7,18 +7,18 @@ California-Nevada Adjoint Simulations (CANVAS) adjoint waveform tomography model
 
 CANVAS describes radially anisotropic P- and S-wave speeds for California and Nevada based on publicly available broadband data. CANVAS was determined by optimizing the fit between observed and synthetic data for moderate-magnitude (Mw 4.5-6.5) earthquakes that occurred within its domain. CANVAS effectively predicts waveform fits down to minimum periods of 12 seconds.
 
-Density is calculated from Gardner’s equation
-
- * (rho = 0.31Vp**0.25)
-
 ## Installation
 
 This package is intended to be installed as part of the UCVM framework,
-version 25.X.0 or higher.
+version 25.x or higher.
 
-## Note
+## Library
 
-A right rectangle, no rotation 
+The library ./lib/libcanvas.a may be statically linked into any
+user application. Also, if your system supports dynamic linking,
+you will also have a ./lib/libcanvas.so file that can be used
+for dynamic linking. The header file defining the API is located
+in ./include/canvas.h.
 
 ## Contact the authors
 
@@ -28,4 +28,10 @@ be used for questions regarding the software itself (e.g. how
 do I link the library properly?). Questions regarding the model's
 science (e.g. on what paper is the CANVAS based?) should be directed
 to the model's authors, located in the AUTHORS file.
+
+## Note
+
+ * (rho = 0.31Vp**0.25), Density is calculated from Gardner’s equation
+ * A right rectangle, no rotation 
+
 

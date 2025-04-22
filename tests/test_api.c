@@ -29,8 +29,13 @@ int main(int argc, const char* argv[]) {
 	canvas_point_t pt;
 	canvas_properties_t ret;
 
-	// Initialize the model.
-	assert(canvas_init("../", "canvas") == 0);
+        // Initialize the model.
+        char *envstr=getenv("UCVM_INSTALL_PATH");
+        if(envstr != NULL) {
+           assert(canvas_init(envstr, "canvas") == 0);
+           } else {
+             assert(canvas_init("..", "canvas") == 0);
+        }
 
 	printf("Loaded the model successfully.\n");
 

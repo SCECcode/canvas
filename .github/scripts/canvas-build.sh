@@ -11,7 +11,7 @@ fi
 aclocal -I m4
 autoconf
 automake --add-missing --force-missing
-./configure --prefix=$UCVM_INSTALL_PATH/model/cvms5
+./configure --prefix=$UCVM_INSTALL_PATH/model/canvas
 make
 make install
 

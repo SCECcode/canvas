@@ -1,7 +1,6 @@
 # CANVAS
 
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
-
 ![GitHub repo size](https://img.shields.io/github/repo-size/sceccode/canvas)
 [![canvas-ucvm-ci Actions Status](https://github.com/SCECcode/canvas/workflows/canvas-ucvm-ci/badge.svg)](https://github.com/SCECcode/canvas/actions)
 

@@ -41,6 +41,6 @@ LDFLAGS="$LDFLAGS -lm"
 AC_CONFIG_FILES([Makefile
                 data/Makefile
                 src/Makefile
-                tests/Makefile])
+                test/Makefile])
 
 AC_OUTPUT

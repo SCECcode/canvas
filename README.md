@@ -1,7 +1,10 @@
 # CANVAS
 
-[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org
-/licenses/BSD-3-Clause)
+[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+
+![GitHub repo size](https://img.shields.io/github/repo-size/sceccode/canvas)
+[![canvas-ucvm-ci Actions Status](https://github.com/SCECcode/canvas/workflows/canvas-ucvm-ci/badge.svg)](https://github.com/SCECcode/canvas/actions)
+
 
 California-Nevada Adjoint Simulations (CANVAS) adjoint waveform tomography model describes 
 radially anisotropic P- and S-wave speeds for California and Nevada based on publicly 
@@ -12,7 +15,7 @@ domain. CANVAS effectively predicts waveform fits down to minimum periods of 12 
 ## Installation
 
 This package is intended to be installed as part of the UCVM framework,
-version 25.x or higher.
+version 25.7 or higher.
 
 ## Library
 

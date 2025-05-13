@@ -7,3 +7,5 @@ if [[ -z "${UCVM_INSTALL_PATH}" ]]; then
   fi
 fi
 env DYLD_LIBRARY_PATH=../src ./test_canvas
+
+

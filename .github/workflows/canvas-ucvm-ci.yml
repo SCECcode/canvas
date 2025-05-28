@@ -2,7 +2,7 @@ name: canvas-ucvm-ci
 
 on:
   push:
-    branches: [ main ]
+    branches: [ foofoo ]
 
 jobs:
   canvas-build-ucvm-linux:

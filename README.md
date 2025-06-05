@@ -1,4 +1,4 @@
-# California-Nevada Adjoint Simulations (CANVAS) adjoint waveform tomography model (CANVAS)
+# California-Nevada Adjoint Simulations adjoint waveform tomography model (CANVAS)
 
 <a href="https://github.com/sceccode/canvas.git"><img src="https://github.com/sceccode/canvas/wiki/images/canvas_logo.png"></a>
 
@@ -6,7 +6,7 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/sceccode/canvas)
 [![canvas-ucvm-ci Actions Status](https://github.com/SCECcode/canvas/workflows/canvas-ucvm-ci/badge.svg)](https://github.com/SCECcode/canvas/actions)
 
-California-Nevada Adjoint Simulations (CANVAS) adjoint waveform tomography model
+California-Nevada Adjoint Simulations adjoint waveform tomography model
 
 This model describes radially anisotropic P- and S-wave speeds for California and Nevada 
 based on publicly available broadband data. CANVAS was determined by optimizing the fit 

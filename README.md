@@ -1,15 +1,18 @@
-# CANVAS
+# California-Nevada Adjoint Simulations (CANVAS) adjoint waveform tomography model (CANVAS)
+
+<a href="https://github.com/sceccode/canvas.git"><img src="https://github.com/sceccode/canvas/wiki/images/canvas_logo.png"></a>
 
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 ![GitHub repo size](https://img.shields.io/github/repo-size/sceccode/canvas)
 [![canvas-ucvm-ci Actions Status](https://github.com/SCECcode/canvas/workflows/canvas-ucvm-ci/badge.svg)](https://github.com/SCECcode/canvas/actions)
 
+California-Nevada Adjoint Simulations (CANVAS) adjoint waveform tomography model
 
-California-Nevada Adjoint Simulations (CANVAS) adjoint waveform tomography model describes 
-radially anisotropic P- and S-wave speeds for California and Nevada based on publicly 
-available broadband data. CANVAS was determined by optimizing the fit between observed and
-synthetic data for moderate-magnitude (Mw 4.5-6.5) earthquakes that occurred within its 
-domain. CANVAS effectively predicts waveform fits down to minimum periods of 12 seconds.
+This model describes radially anisotropic P- and S-wave speeds for California and Nevada 
+based on publicly available broadband data. CANVAS was determined by optimizing the fit 
+between observed and synthetic data for moderate-magnitude (Mw 4.5-6.5) earthquakes that 
+occurred within its domain. CANVAS effectively predicts waveform fits down to minimum 
+periods of 12 seconds.
 
 ## Installation
 
@@ -36,6 +39,6 @@ to the model's authors, located in the AUTHORS file.
 ## Note
 
  * (rho = 0.31Vp**0.25), Density is calculated from Gardner’s equation
- * A right rectangle, no rotation 
+ * A right rectangle bounding box, no rotation 
 
 

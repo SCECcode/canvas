@@ -14,6 +14,10 @@ between observed and synthetic data for moderate-magnitude (Mw 4.5-6.5) earthqua
 occurred within its domain. CANVAS effectively predicts waveform fits down to minimum 
 periods of 12 seconds.
 
+Doody, C., Rodgers, A., Afanasiev, M., Boehm, C., Krischer, L., Chiang, A., & Simmons, N. (2023). CANVAS: An adjoint waveform tomography model of California and Nevada. Journal of Geophysical Research: Solid Earth, 128(12). https://doi.org/10.1029/2023JB027583
+
+Doody, C. (2023). Dataset for 'CANVAS: An adjoint waveform tomography model of California and Nevada' [Data set]. In Journal of Geophysical Research: Solid Earth (Vol. 128, Number 12). Zenodo. https://doi.org/10.5281/zenodo.8415562
+
 ## Installation
 
 This package is intended to be installed as part of the UCVM framework,

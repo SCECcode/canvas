@@ -159,7 +159,7 @@ int canvas_query(canvas_point_t *points, canvas_properties_t *data, int numpoint
 
         if(canvas_debug) { fprintf(stderrfp,"Y:lat_n %f bottom %f delta %f ==> %d\n",lat_n,canvas_configuration->bottom_left_corner_lat, delta_lat, load_y_coord); }
 
-        load_x_coord = (int)(abs(round((lon_e - canvas_configuration->bottom_left_corner_lon) / delta_lon)));
+        load_x_coord = (int)(round((lon_e - canvas_configuration->bottom_left_corner_lon) / delta_lon));
 
         if(canvas_debug) { fprintf(stderrfp,"X:lon_e %f bottom %f delta %f ==> %d\n",lon_e,canvas_configuration->bottom_left_corner_lon, delta_lon, load_x_coord); }
 

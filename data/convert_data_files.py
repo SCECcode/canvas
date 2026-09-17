@@ -16,6 +16,7 @@ import subprocess
 import struct
 import array
 import shutil
+import os
 
 ## at CANVAS_model.txt
 model = "CANVAS"

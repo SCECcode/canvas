@@ -23,6 +23,7 @@ import struct
 import array
 import math
 import shutil
+import os
 
 ## at CANVAS/canvas.txt
 
